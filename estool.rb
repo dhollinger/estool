@@ -5,11 +5,8 @@ require 'net/http'
 class Estool
   attr_reader :option
 
-  def start
-
-  end
-
   def write_log
 
   end
+
 end
