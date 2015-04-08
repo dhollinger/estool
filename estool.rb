@@ -2,16 +2,15 @@
 require 'elasticsearch'
 require 'net/http'
 
-class Estool
-  attr_reader :option, :server
+class Server
+  attr_reader :server
 
-  def initialize(option, server)
-    @option = option
+  def initialize(server)
     @server = server
   end
 
 end
 
-class Connection
+class Connection < Server
 
 end
