@@ -7,7 +7,7 @@ require 'pp'
 
 # Create Connection to Elasticsearch Nodes
 # Eventually will be an option that defaults to localhost
-server = Elasticsearch::Client.new host: 'esr02sv17:9200'
+server = Elasticsearch::Client.new host: 'es_node:9200'
 
 
 class ElasticOptions
