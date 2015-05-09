@@ -2,7 +2,6 @@
 require 'elasticsearch'
 require 'net/http'
 require 'optparse'
-require 'ostruct'
 
 options = {
   :cat    => '',
