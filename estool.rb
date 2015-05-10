@@ -2,6 +2,7 @@
 require 'elasticsearch'
 require 'net/http'
 require 'optparse'
+require_relative 'lib/cat'
 
 options = {
   :cat    => '',
@@ -37,13 +38,4 @@ end.parse!
 
 server = Elasticsearch::Client.new host: "#{options[:server]}:#{options[:port]}"
 
-# Check if the Cat option is empty.
-if options[:cat] != ''
-  begin
-    # Attempt to execute a Elasticsearch::API::Cat::CatClient function call
-    puts server.cat.send("#{options[:cat]}", :v => true)
-  rescue
-    # Invalid function passed to Elasticsearch::API::Cat::CatClient
-    puts 'Invalid Elasticsearch Cat option'
-  end
-end
+get_cat(options[:cat], server)
