@@ -38,4 +38,6 @@ end.parse!
 
 server = Elasticsearch::Client.new host: "#{options[:server]}:#{options[:port]}"
 
-get_cat(options[:cat], server)
+if options[:cat] != ''
+  get_cat(options[:cat], server)
+end
