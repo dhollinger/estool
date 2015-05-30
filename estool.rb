@@ -10,7 +10,7 @@ options = {
   :port   => '9200'
 }
 
-OptionParser.new do |opts|
+o = OptionParser.new do |opts|
   # Option Banner Shown with the help option
   opts.banner = 'Usage estool.rb [options]'
 
@@ -34,7 +34,18 @@ OptionParser.new do |opts|
     puts opts
     exit
   end
-end.parse!
+end
+
+begin o.parse! ARGV
+rescue OptionParser::InvalidOption => invopt
+  puts invopt
+  puts o
+  exit 1
+rescue OptionParser::MissingArgument => misarg
+  puts misarg
+  puts o
+  exit 1
+end
 
 server = Elasticsearch::Client.new host: "#{options[:server]}:#{options[:port]}"
 
