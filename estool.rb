@@ -49,6 +49,14 @@ end
 
 server = Elasticsearch::Client.new host: "#{options[:server]}:#{options[:port]}"
 
+begin
+  server.cat.health
+rescue Faraday::ConnectionFailed => connfail
+  # Connection Failure Message
+  puts connfail
+  exit 1
+end
+
 if options[:cat] != ''
   get_cat(options[:cat], server)
 end

@@ -5,9 +5,9 @@ def get_cat(arg,client)
     begin
       # Attempt to execute a Elasticsearch::API::Cat::CatClient function call
       puts client.cat.send("#{arg}", :v => true)
-    rescue
-      # Invalid function passed to Elasticsearch::API::Cat::CatClient
-      puts 'Invalid Elasticsearch Cat option'
+    rescue NoMethodError => msg
+      puts msg
+      exit 1
     end
   end
 end
