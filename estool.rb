@@ -5,9 +5,9 @@ require 'optparse'
 require_relative 'lib/cat'
 
 options = {
-  :cat    => '',
-  :server => 'localhost',
-  :port   => '9200'
+  cat: '',
+  server: 'localhost',
+  port: '9200'
 }
 
 o = OptionParser.new do |opts|
@@ -57,6 +57,4 @@ rescue Faraday::ConnectionFailed => connfail
   exit 1
 end
 
-if options[:cat] != ''
-  get_cat(options[:cat], server)
-end
+get_cat(options[:cat], server) unless options[:cat] == ''
