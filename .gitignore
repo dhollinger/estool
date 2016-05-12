@@ -5,3 +5,4 @@
 *.exvim
 .project
 .buildpath
+Gemfile.lock
