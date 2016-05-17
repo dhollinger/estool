@@ -2,8 +2,8 @@
 require 'elasticsearch'
 require 'net/http'
 require 'optparse'
-require_relative '../lib/estool/cat'
-require_relative '../lib/estool/connections'
+require 'lib/estool/cat'
+require 'lib/estool/connections'
 
 module Estool
   options = {
