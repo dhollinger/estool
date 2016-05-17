@@ -52,5 +52,5 @@ module Estool
   server = Estool::Connections.start_conn(options[:server], options[:port])
   Estool::Connections.test_conn(server)
 
-  get_cat(options[:cat], server) unless options[:cat] == ''
+  Estool::Cat.get_cat(options[:cat], server) unless options[:cat] == ''
 end
