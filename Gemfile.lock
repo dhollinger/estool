@@ -13,6 +13,7 @@ GEM
       multipart-post (>= 1.2, < 3)
     multi_json (1.12.0)
     multipart-post (2.0.0)
+    rake (10.4.2)
 
 PLATFORMS
   ruby
@@ -23,6 +24,7 @@ DEPENDENCIES
   elasticsearch-transport (>= 1.0.6)
   faraday (>= 0.8.0)
   multi_json (>= 1.9.0)
+  rake
 
 BUNDLED WITH
    1.12.3
