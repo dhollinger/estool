@@ -2,12 +2,14 @@
 require 'elasticsearch'
 require 'net/http'
 require 'optparse'
-require 'lib/estool/cat'
+require 'lib/estool/actions/cat'
+require 'lib/estool/actions/nodes'
 require 'lib/estool/connections'
 
 module Estool
   options = {
       cat: '',
+      nodes: '',
       server: 'localhost',
       port: '9200'
   }
@@ -19,6 +21,11 @@ module Estool
     # Elasticsearch Cat API Option
     opts.on('-c', '--cat OPTION', 'Utilize the Cat API') do |c|
       options[:cat] = c
+    end
+
+    # Elasticsearch Nodes API Option
+    opts.on('-n', '--nodes OPTION', 'Utilize the Nodes API') do |n|
+      options[:nodes] = n
     end
 
     # Set Server to connect to. Defaults to localhost.
@@ -53,4 +60,5 @@ module Estool
   Estool::Connections.test_conn(server)
 
   Estool::Cat.get_cat(options[:cat], server) unless options[:cat] == ''
+  Estool::Nodes.get_nodes(server,options[:nodes]) unless options[:nodes] == ''
 end
