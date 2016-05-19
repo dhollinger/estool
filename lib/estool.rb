@@ -2,63 +2,43 @@
 require 'elasticsearch'
 require 'net/http'
 require 'optparse'
-require 'lib/estool/actions/cat'
-require 'lib/estool/actions/nodes'
+#require 'lib/estool/actions/nodes'
 require 'lib/estool/connections'
+require 'thor'
 
 module Estool
-  options = {
-      cat: '',
-      nodes: '',
-      server: 'localhost',
-      port: '9200'
-  }
-
-  o = OptionParser.new do |opts|
-    # Option Banner Shown with the help option
-    opts.banner = 'Usage estool.rb [options]'
-
-    # Elasticsearch Cat API Option
-    opts.on('-c', '--cat OPTION', 'Utilize the Cat API') do |c|
-      options[:cat] = c
+  class Cli < Thor
+    desc 'cat COMMAND [OPTIONS]', 'Utilize the Elasticsearch Cat API'
+    method_option "cmd", :type => :string,
+                         :banner => "Cat API subcommand. Required",
+                         :option => :required
+    method_option "host", :type => :string,
+                          :banner => "Elasticsearch host to connect to. Default: localhost",
+                          :default => "localhost"
+    method_option "port", :type => :string,
+                          :banner => "Port to use when connecting to Elasticsearch. Default: 9200",
+                          :default => "9200"
+    def cat
+      require 'lib/estool/cli/cat'
+      Cat.new(options).run
     end
 
-    # Elasticsearch Nodes API Option
-    opts.on('-n', '--nodes OPTION', 'Utilize the Nodes API') do |n|
-      options[:nodes] = n
-    end
-
-    # Set Server to connect to. Defaults to localhost.
-    opts.on('-s', '--server OPTION', 'Specify Node to connect to') do |s|
-      options[:server] = s
-    end
-
-    # Set Elasticsearch HTTP port. Defaults to 9200
-    opts.on('-p', '--port OPTION', 'Specify HTTP port') do |p|
-      options[:port] = p
-    end
-
-    # Displays the Help Screen
-    opts.on_tail('-h', '--help', 'Display this screen') do
-      puts opts
-      exit
+    desc 'nodes COMMAND [OPTIONS]', 'Utilize the Elasticsearch Nodes API'
+    method_option "cmd", :type => :string,
+                         :banner => "Nodes API subcommand. Required",
+                         :option => :required
+    method_option "host", :type => :string,
+                  :banner => "Elasticsearch host to connect to. Default: localhost",
+                  :default => "localhost"
+    method_option "port", :type => :string,
+                  :banner => "Port to use when connecting to Elasticsearch. Default: 9200",
+                  :default => "9200"
+    def nodes
+      require 'lib/estool/cli/nodes'
+      Nodes.new(options).run
     end
   end
 
-  begin o.parse! ARGV
-  rescue OptionParser::InvalidOption => invopt
-    puts invopt
-    puts o
-    exit 1
-  rescue OptionParser::MissingArgument => misarg
-    puts misarg
-    puts o
-    exit 1
-  end
 
-  server = Estool::Connections.start_conn(options[:server], options[:port])
-  Estool::Connections.test_conn(server)
-
-  Estool::Cat.get_cat(options[:cat], server) unless options[:cat] == ''
-  Estool::Nodes.get_nodes(server,options[:nodes]) unless options[:nodes] == ''
+  #Estool::Nodes.get_nodes(server,options[:nodes]) unless options[:nodes] == ''
 end

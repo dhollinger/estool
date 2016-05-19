@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-require File.expand_path('lib/estool', Dir.pwd)
+require File.expand_path('../lib/estool', Dir.pwd)
 
 # Placeholder
-Estool::Cmd.start
+Estool::Cli.start(ARGV)
