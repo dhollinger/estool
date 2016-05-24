@@ -11,19 +11,33 @@ module Estool
     end
 
     def run
+      help = '''
+Usage: estool cat [COMMAND] [OPTIONS]
+
+Subcommands:
+ aliases allocation count fielddata health help indices
+ master nodeattrs nodes pending_tasks plugins recovery
+ repositories segments shards snapshots threadpool
+        '''
       client = Estool::Connections.start_conn(@options[:host],@options[:port])
       Estool::Connections.test_conn(client)
       # Attempt to execute a Elasticsearch::API::Cat::CatClient function call
-      if @options[:verbose] == true
+      if @command == 'help'
+        puts help
+      elsif @options[:verbose] == true
         puts client.cat.send("#{@command}", master_timeout: 30, v: true)
       else
         puts client.cat.send("#{@command}", master_timeout: 30)
       end
     rescue NoMethodError
-      puts "Unsupported command: #{@command}"
+      puts "Invalid cat command: #{@command}"
+      puts help
       exit 1
     rescue ArgumentError => arg
-      puts arg
+      puts """
+      #{arg}
+      Usage: 'estool cat help' for more information
+      """
       exit 1
     end
 
