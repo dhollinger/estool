@@ -13,13 +13,19 @@ module Estool
                          :option => :required
     method_option 'host', :type => :string,
                           :banner => 'Elasticsearch host to connect to. Default: localhost',
-                          :default => 'localhost'
+                          :default => 'localhost',
+                          :aliases => '-H'
     method_option 'port', :type => :string,
                           :banner => 'Port to use when connecting to Elasticsearch. Default: 9200',
-                          :default => '9200'
-    def cat
+                          :default => '9200',
+                          :aliases => '-p'
+    method_option 'verbose', :type => :boolean,
+                             :banner => 'Verbose option. Not all subcommands support it.',
+                             :default => false,
+                             :aliases => '-v'
+    def cat(command)
       require 'lib/estool/cli/cat'
-      Cat.new(options).run
+      Cat.new(command,options).run
     end
 
     desc 'nodes COMMAND [OPTIONS]', 'Utilize the Elasticsearch Nodes API'
@@ -32,9 +38,9 @@ module Estool
     method_option 'port', :type => :string,
                   :banner => 'Port to use when connecting to Elasticsearch. Default: 9200',
                   :default => '9200'
-    def nodes
+    def nodes(command)
       require 'lib/estool/cli/nodes'
-      Nodes.new(options).run
+      Nodes.new(command, options).run
     end
   end
 end
