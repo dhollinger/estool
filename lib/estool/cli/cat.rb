@@ -25,7 +25,7 @@ Subcommands:
       if @command == 'help'
         puts help
       elsif @options[:verbose] == true
-        puts client.cat.send("#{@command}", master_timeout: 30, v: true)
+        puts client.cat.send("#{@command}", v: true)
       else
         puts client.cat.send("#{@command}")
       end
