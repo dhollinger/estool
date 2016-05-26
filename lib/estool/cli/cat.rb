@@ -17,7 +17,7 @@ Usage: estool cat [COMMAND] [OPTIONS]
 Subcommands:
  aliases allocation count fielddata health help indices
  master nodeattrs nodes pending_tasks plugins recovery
- repositories segments shards snapshots threadpool
+ repositories segments shards snapshots thread_pool
         '''
       client = Estool::Connections.start_conn(@options[:host],@options[:port])
       Estool::Connections.test_conn(client)
@@ -27,7 +27,7 @@ Subcommands:
       elsif @options[:verbose] == true
         puts client.cat.send("#{@command}", master_timeout: 30, v: true)
       else
-        puts client.cat.send("#{@command}", master_timeout: 30)
+        puts client.cat.send("#{@command}")
       end
     rescue NoMethodError
       puts "Invalid cat command: #{@command}"
