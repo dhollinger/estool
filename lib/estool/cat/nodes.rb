@@ -17,8 +17,8 @@ module Estool
                               format: "#{@options[:output]}"
       rescue ArgumentError => args
         puts """
-        #{arg}
-        Usage: 'estool cat help' for more information
+        #{args}
+        Usage: 'estool cat help nodes' for more information
         """
         exit 1
       end
