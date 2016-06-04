@@ -31,6 +31,40 @@ module Estool
       Aliases.new(options).run
     end
 
+    desc 'allocation [OPTIONS]', 'Display shard allocation information'
+    method_option 'host', :type => :string,
+                  :banner => 'Elasticsearch host to connect to',
+                  :default => 'localhost',
+                  :aliases => '-H'
+    method_option 'port', :type => :string,
+                  :banner => 'Port to use when connecting to Elasticsearch',
+                  :default => '9200',
+                  :aliases => '-p'
+    method_option 'verbose', :type => :boolean,
+                  :banner => 'Verbose option. Not all subcommands support it',
+                  :default => false,
+                  :aliases => '-v'
+    method_option 'output', :type => :string,
+                  :banner => 'Display output as json or text',
+                  :default => 'text',
+                  :aliases => '-o'
+    method_option 'timeout', :type => :numeric,
+                  :banner => 'Set Master Timeout in seconds',
+                  :default => 30,
+                  :aliases => '-t'
+    method_option 'bytes', :type => :string,
+                  :banner => 'Unit to display byte values',
+                  :default => 'b',
+                  :enum => 'b k m g',
+                  :aliases => '-b'
+    method_option 'node', :type => :array,
+                  :banner => 'Comma separated list of nodes',
+                  :aliases => '-n'
+    def allocation
+      require 'lib/estool/cat/allocation'
+      Allocation.new(options).run
+    end
+
     desc 'health [OPTIONS]', 'Display Elasticsearch Cluster health'
     method_option 'host', :type => :string,
                   :banner => 'Elasticsearch host to connect to',
