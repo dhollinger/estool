@@ -46,6 +46,15 @@ module Estool
       Allocation.new(options).run
     end
 
+    desc 'count [OPTIONS]', 'Return Document count for cluster or indices'
+    method_option 'index', :type => :string,
+                  :banner => 'Index to count documents',
+                  :aliases => '-i'
+    def count
+      require 'lib/estool/cat/count'
+      Count.new(options).run
+    end
+
     desc 'health [OPTIONS]', 'Display Elasticsearch Cluster health'
     def health
       require 'lib/estool/cat/health'
