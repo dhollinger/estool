@@ -1,5 +1,4 @@
-require 'elasticsearch-api'
-require 'lib/estool/connections'
+require 'lib/estool/actions/cat'
 
 module Estool
   class Cat::Health
@@ -10,19 +9,12 @@ module Estool
     end
 
     def run
-      client = Estool::Connections.start_conn(@options[:host],@options[:port])
-      Estool::Connections.test_conn(client)
-      begin
-        puts client.cat.health v: "#{@options[:verbose]}",
-                 format: "#{@options[:output]}",
-                 master_timeout: "#{@options[:timeout]}"
-      rescue ArgumentError => args
-        puts """
-        #{args}
-        Usage: 'estool cat help health' for more information
-        """
-        exit 1
-      end
+      data = {
+          v: "#{@options[:verbose]}",
+          format: "#{@options[:output]}",
+          master_timeout: "#{@options[:timeout]}"
+      }
+      Estool::Actions::Cat.run(:health, data, @options)
     end
   end
 end
