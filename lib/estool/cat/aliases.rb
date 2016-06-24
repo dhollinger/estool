@@ -1,5 +1,4 @@
-require 'elasticsearch-api'
-require 'lib/estool/connections'
+require 'lib/estool/actions/cat'
 
 module Estool
   class Cat::Aliases
@@ -10,20 +9,13 @@ module Estool
     end
 
     def run
-      client = Estool::Connections.start_conn(@options[:host], @options[:port])
-      Estool::Connections.test_conn(client)
-      begin
-        puts client.cat.aliases v: "#{@options[:verbose]}",
-                 format: "#{@options[:output]}",
-                 master_timeout: "#{@options[:timeout]}",
-                 name: "#{@options[:name]}"
-      rescue ArgumentError => args
-        puts """
-        #{args}
-        Usage: 'estool cat help aliases' for more information
-        """
-        exit 1
-      end
+      data = {
+          v: "#{@options[:verbose]}",
+          format: "#{@options[:output]}",
+          master_timeout: "#{@options[:timeout]}",
+          name: "#{@options[:name]}"
+      }
+      Estool::Actions::Cat.run(:aliases, data, @options)
     end
   end
 end

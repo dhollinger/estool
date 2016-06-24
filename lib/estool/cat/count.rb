@@ -15,7 +15,7 @@ module Estool
           master_timeout: "#{@options[:timeout]}",
           index: "#{@options[:index]}"
       }
-      Estool::Actions::Cat.run(:count, data, options)
+      Estool::Actions::Cat.run(:count, data, @options)
     end
   end
 end
