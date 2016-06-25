@@ -64,6 +64,19 @@ module Estool
       Fielddata.new(options).run
     end
 
+    desc 'indices [OPTIONS]', 'Display indices statistics across the cluster'
+    method_option 'index', :type => :string,
+                  :banner => 'Comma separated list of index names to display',
+                  :aliases => '-i'
+    method_option 'primary', :type => :boolean,
+                  :banner => 'Limit returned information to primary shards only',
+                  :aliases => '-P',
+                  :default => false
+    def indices
+      require 'lib/estool/cat/indices'
+      Indices.new(options).run
+    end
+
     desc 'health [OPTIONS]', 'Display Elasticsearch Cluster health'
     def health
       require 'lib/estool/cat/health'
