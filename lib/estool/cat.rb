@@ -10,6 +10,11 @@ module Estool
                   :banner => 'Port to use when connecting to Elasticsearch',
                   :default => '9200',
                   :aliases => '-p'
+    class_option 'bytes', :type => :string,
+                  :banner => 'Unit to display byte values in.',
+                  :default => 'b',
+                  :enum => 'b k m g',
+                  :aliases => '-b'
     class_option 'verbose', :type => :boolean,
                   :banner => 'Verbose option. Not all subcommands support it',
                   :default => false,
@@ -33,11 +38,6 @@ module Estool
     end
 
     desc 'allocation [OPTIONS]', 'Display shard allocation information'
-    method_option 'bytes', :type => :string,
-                  :banner => 'Unit to display byte values',
-                  :default => 'b',
-                  :enum => 'b k m g',
-                  :aliases => '-b'
     method_option 'node', :type => :array,
                   :banner => 'Comma separated list of nodes',
                   :aliases => '-n'
@@ -59,11 +59,6 @@ module Estool
     method_option 'fields', :type => :string,
                   :banner => 'Comma separated list of fields',
                   :aliases => '-f'
-    method_option 'bytes', :type => :string,
-                  :banner => 'Unit to display byte values in.',
-                  :default => 'b',
-                  :enum => 'b k m g',
-                  :aliases => '-b'
     def fielddata
       require 'lib/estool/cat/fielddata'
       Fielddata.new(options).run
