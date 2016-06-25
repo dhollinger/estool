@@ -10,11 +10,6 @@ module Estool
                   :banner => 'Port to use when connecting to Elasticsearch',
                   :default => '9200',
                   :aliases => '-p'
-    class_option 'bytes', :type => :string,
-                  :banner => 'Unit to display byte values in.',
-                  :default => 'b',
-                  :enum => 'b k m g',
-                  :aliases => '-b'
     class_option 'verbose', :type => :boolean,
                   :banner => 'Verbose option. Not all subcommands support it',
                   :default => false,
@@ -41,6 +36,11 @@ module Estool
     method_option 'node', :type => :array,
                   :banner => 'Comma separated list of nodes',
                   :aliases => '-n'
+    method_option 'bytes', :type => :string,
+                 :banner => 'Unit to display byte values in.',
+                 :default => 'b',
+                 :enum => %w{b k m g},
+                 :aliases => '-b'
     def allocation
       require 'lib/estool/cat/allocation'
       Allocation.new(options).run
@@ -59,9 +59,20 @@ module Estool
     method_option 'fields', :type => :string,
                   :banner => 'Comma separated list of fields',
                   :aliases => '-f'
+    method_option 'bytes', :type => :string,
+                  :banner => 'Unit to display byte values in.',
+                  :default => 'b',
+                  :enum => %w{b k m g},
+                  :aliases => '-b'
     def fielddata
       require 'lib/estool/cat/fielddata'
       Fielddata.new(options).run
+    end
+
+    desc 'health [OPTIONS]', 'Display Elasticsearch Cluster health'
+    def health
+      require 'lib/estool/cat/health'
+      Health.new(options).run
     end
 
     desc 'indices [OPTIONS]', 'Display indices statistics across the cluster'
@@ -72,15 +83,20 @@ module Estool
                   :banner => 'Limit returned information to primary shards only',
                   :aliases => '-P',
                   :default => false
+    method_option 'bytes', :type => :string,
+                  :banner => 'Unit to display byte values in.',
+                  :default => 'b',
+                  :enum => %w{b k m g},
+                  :aliases => '-b'
     def indices
       require 'lib/estool/cat/indices'
       Indices.new(options).run
     end
 
-    desc 'health [OPTIONS]', 'Display Elasticsearch Cluster health'
-    def health
-      require 'lib/estool/cat/health'
-      Health.new(options).run
+    desc 'master [OPTIONS]', 'Display current master node'
+    def master
+      require 'lib/estool/cat/master'
+      Master.new(options).run
     end
 
     desc 'nodes [OPTIONS]', 'Display Elasticsearch Nodes'
