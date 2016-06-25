@@ -111,10 +111,10 @@ module Estool
       Nodes.new(options).run
     end
 
-    desc 'tasks [OPTIONS]', 'Display Elasticsearch Pending Task in tabular format'
-    def tasks
-      require 'lib/estool/cat/tasks'
-      Tasks.new(options).run
+    desc 'ptasks [OPTIONS]', 'Display Elasticsearch Pending Task in tabular format'
+    def ptasks
+      require 'lib/estool/cat/ptasks'
+      Ptasks.new(options).run
     end
   end
 end

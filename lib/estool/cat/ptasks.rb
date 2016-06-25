@@ -1,7 +1,7 @@
 require 'lib/estool/actions/cat'
 
 module Estool
-  class Cat::Tasks
+  class Cat::Ptasks
 
     def initialize(options)
       @verbose = options[:verbose]
