@@ -99,6 +99,12 @@ module Estool
       Master.new(options).run
     end
 
+    desc 'nodeattrs [OPTIONS]', 'Display custom node attributes'
+    def nodeattrs
+      require 'lib/estool/cat/nodeattrs'
+      Nodeattrs.new(options).run
+    end
+
     desc 'nodes [OPTIONS]', 'Display Elasticsearch Nodes'
     def nodes
       require 'lib/estool/cat/nodes'
