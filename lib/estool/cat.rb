@@ -55,6 +55,20 @@ module Estool
       Count.new(options).run
     end
 
+    desc 'fielddata [OPTIONS]', 'Return field data usage data'
+    method_option 'fields', :type => :string,
+                  :banner => 'Comma separated list of fields',
+                  :aliases => '-f'
+    method_option 'bytes', :type => :string,
+                  :banner => 'Unit to display byte values in.',
+                  :default => 'b',
+                  :enum => 'b k m g',
+                  :aliases => '-b'
+    def fielddata
+      require 'lib/estool/cat/fielddata'
+      Fielddata.new(options).run
+    end
+
     desc 'health [OPTIONS]', 'Display Elasticsearch Cluster health'
     def health
       require 'lib/estool/cat/health'
