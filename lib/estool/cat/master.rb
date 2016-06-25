@@ -2,7 +2,6 @@ require 'lib/estool/actions/cat'
 
 module Estool
   class Cat::Master
-    attr_reader :options
 
     def initialize(options)
       @verbose = options[:verbose]

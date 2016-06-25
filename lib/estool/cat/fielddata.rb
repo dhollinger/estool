@@ -2,20 +2,26 @@ require 'lib/estool/actions/cat'
 
 module Estool
   class Cat::Fielddata
-    attr_reader :options
 
     def initialize(options)
-      @options = options
+      @verbose = options[:verbose]
+      @timeout = options[:timeout]
+      @bytes = options[:bytes]
+      @fields = options[:fields]
+      @server = {
+          host: options[:host],
+          port: options[:port]
+      }
     end
 
     def run
       data = {
-          v: "#{@options[:verbose]}",
-          master_timeout: "#{@options[:timeout]}",
-          bytes: "#{@options[:bytes]}"
+          v: @verbose,
+          master_timeout: @timeout,
+          bytes: @bytes
       }
-      data[:fields] = @options[:fields] unless @options[:fields].nil?
-      Estool::Actions::Cat.run(:fielddata, data, @options)
+      data[:fields] = @fields unless @fields.nil?
+      Estool::Actions::Cat.run(:fielddata, data, @server)
     end
   end
 end

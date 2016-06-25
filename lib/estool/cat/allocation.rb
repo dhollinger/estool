@@ -2,20 +2,26 @@ require 'lib/estool/actions/cat'
 
 module Estool
   class Cat::Allocation
-    attr_reader :options
 
     def initialize(options)
-      @options = options
+      @verbose = options[:verbose]
+      @node = options[:node]
+      @bytes = options[:bytes]
+      @output = options[:output]
+      @server = {
+          host: options[:host],
+          port: options[:port]
+      }
     end
 
     def run
       data = {
-          v: "#{@options[:verbose]}",
-          node_id: "#{@options[:node]}",
-          bytes: "#{@options[:bytes]}",
-          format: "#{@options[:output]}"
+          v: @verbose,
+          node_id: @node,
+          bytes: @bytes,
+          format: @output
       }
-      Estool::Actions::Cat.run(:allocation, data, @options)
+      Estool::Actions::Cat.run(:allocation, data, @server)
     end
   end
 end

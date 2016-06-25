@@ -2,20 +2,26 @@ require 'lib/estool/actions/cat'
 
 module Estool
   class Cat::Aliases
-    attr_reader :options
 
     def initialize(options)
-      @options = options
+      @verbose = options[:verbose]
+      @output = options[:output]
+      @timeout = options[:timeout]
+      @name = options[:name]
+      @server = {
+          host: options[:host],
+          port: options[:port]
+      }
     end
 
     def run
       data = {
-          v: "#{@options[:verbose]}",
-          format: "#{@options[:output]}",
-          master_timeout: "#{@options[:timeout]}",
-          name: "#{@options[:name]}"
+          v: @verbose,
+          format: @output,
+          master_timeout: @timeout,
+          name: @name
       }
-      Estool::Actions::Cat.run(:aliases, data, @options)
+      Estool::Actions::Cat.run(:aliases, data, @server)
     end
   end
 end

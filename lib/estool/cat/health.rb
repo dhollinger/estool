@@ -2,19 +2,24 @@ require 'lib/estool/actions/cat'
 
 module Estool
   class Cat::Health
-    attr_reader :options
 
     def initialize(options)
-      @options = options
+      @verbose = options[:verbose]
+      @output = options[:output]
+      @timeout = options[:timeout]
+      @server = {
+          host: options[:host],
+          port: options[:port]
+      }
     end
 
     def run
       data = {
-          v: "#{@options[:verbose]}",
-          format: "#{@options[:output]}",
-          master_timeout: "#{@options[:timeout]}"
+          v: @verbose,
+          format: @output,
+          master_timeout: @timeout
       }
-      Estool::Actions::Cat.run(:health, data, @options)
+      Estool::Actions::Cat.run(:health, data, @server)
     end
   end
 end
