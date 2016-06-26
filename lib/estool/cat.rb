@@ -116,5 +116,25 @@ module Estool
       require 'lib/estool/cat/ptasks'
       Ptasks.new(options).run
     end
+
+    desc 'plugins [OPTIONS]', 'Display Elasticsearch Plugins'
+    def plugins
+      require 'lib/estool/cat/plugin'
+      Plugin.new(options).run
+    end
+
+    desc 'recovery [OPTIONS]', 'Display shard recovery status'
+    method_option 'index', :type => :string,
+                  :banner => 'List of indexes to return information about. Comma-separated',
+                  :aliases => '-i'
+    method_option 'bytes', :type => :string,
+                  :banner => 'Unit to display byte values in.',
+                  :default => 'b',
+                  :enum => %w{b k m g},
+                  :aliases => '-b'
+    def recovery
+      require 'lib/estool/cat/recovery'
+      Recovery.new(options).run
+    end
   end
 end
