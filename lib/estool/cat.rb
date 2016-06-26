@@ -136,5 +136,11 @@ module Estool
       require 'lib/estool/cat/recovery'
       Recovery.new(options).run
     end
+
+    desc 'repositories [OPTIONS]', 'Display registered repositories'
+    def repositories
+      require 'lib/estool/cat/repositories'
+      Repositories.new(options).run
+    end
   end
 end
