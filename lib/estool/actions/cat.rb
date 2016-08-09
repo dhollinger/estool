@@ -1,5 +1,5 @@
 require 'elasticsearch-api'
-require 'lib/estool/connections'
+require 'estool/connections'
 
 module Estool::Actions
   class Cat

@@ -28,7 +28,7 @@ module Estool
                   :banner => 'Name of alias(es) to display information about',
                   :aliases => '-n'
     def aliases
-      require 'lib/estool/cat/aliases'
+      require 'estool/cat/aliases'
       Aliases.new(options).run
     end
 
@@ -42,7 +42,7 @@ module Estool
                  :enum => %w{b k m g},
                  :aliases => '-b'
     def allocation
-      require 'lib/estool/cat/allocation'
+      require 'estool/cat/allocation'
       Allocation.new(options).run
     end
 
@@ -51,7 +51,7 @@ module Estool
                   :banner => 'Index to count documents',
                   :aliases => '-i'
     def count
-      require 'lib/estool/cat/count'
+      require 'estool/cat/count'
       Count.new(options).run
     end
 
@@ -65,13 +65,13 @@ module Estool
                   :enum => %w{b k m g},
                   :aliases => '-b'
     def fielddata
-      require 'lib/estool/cat/fielddata'
+      require 'estool/cat/fielddata'
       Fielddata.new(options).run
     end
 
     desc 'health [OPTIONS]', 'Display Elasticsearch Cluster health'
     def health
-      require 'lib/estool/cat/health'
+      require 'estool/cat/health'
       Health.new(options).run
     end
 
@@ -89,37 +89,37 @@ module Estool
                   :enum => %w{b k m g},
                   :aliases => '-b'
     def indices
-      require 'lib/estool/cat/indices'
+      require 'estool/cat/indices'
       Indices.new(options).run
     end
 
     desc 'master [OPTIONS]', 'Display current master node'
     def master
-      require 'lib/estool/cat/master'
+      require 'estool/cat/master'
       Master.new(options).run
     end
 
     desc 'nodeattrs [OPTIONS]', 'Display custom node attributes'
     def nodeattrs
-      require 'lib/estool/cat/nodeattrs'
+      require 'estool/cat/nodeattrs'
       Nodeattrs.new(options).run
     end
 
     desc 'nodes [OPTIONS]', 'Display Elasticsearch Nodes'
     def nodes
-      require 'lib/estool/cat/nodes'
+      require 'estool/cat/nodes'
       Nodes.new(options).run
     end
 
     desc 'ptasks [OPTIONS]', 'Display Elasticsearch Pending Task in tabular format'
     def ptasks
-      require 'lib/estool/cat/ptasks'
+      require 'estool/cat/ptasks'
       Ptasks.new(options).run
     end
 
     desc 'plugins [OPTIONS]', 'Display Elasticsearch Plugins'
     def plugins
-      require 'lib/estool/cat/plugin'
+      require 'estool/cat/plugin'
       Plugin.new(options).run
     end
 
@@ -133,13 +133,13 @@ module Estool
                   :enum => %w{b k m g},
                   :aliases => '-b'
     def recovery
-      require 'lib/estool/cat/recovery'
+      require 'estool/cat/recovery'
       Recovery.new(options).run
     end
 
     desc 'repositories [OPTIONS]', 'Display registered repositories'
     def repositories
-      require 'lib/estool/cat/repositories'
+      require 'estool/cat/repositories'
       Repositories.new(options).run
     end
   end

@@ -1,4 +1,4 @@
-require 'lib/estool/actions/cat'
+require 'estool/actions/cat'
 
 module Estool
   class Cat::Plugin
