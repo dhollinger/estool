@@ -1,4 +1,4 @@
 module Estool
   ESTOOL_ROOT = File.expand_path("../..", __FILE__)
-  VERSION = "0.0.5"
+  VERSION = "0.0.6"
 end
