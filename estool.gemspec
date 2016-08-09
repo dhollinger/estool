@@ -1,5 +1,5 @@
 #coding: utf-8
-$:.unshift File.dirname(__FILE__)
+$LOAD_PATH.unshift(File.expand_path('../lib', __FILE__))
 require 'lib/estool/version'
 
 Gem::Specification.new do |spec|
@@ -11,8 +11,11 @@ Gem::Specification.new do |spec|
   spec.homepage      = %q{https://github.com/dhollinger/estool}
   spec.license       = 'Apache 2.0'
 
-  spec.files         = ['bin/estool', 'lib/estool.rb']
+  spec.files         = ['bin/estool']
   spec.executables   = ['estool']
   spec.test_files    = ['tests/test_estool.rb']
   spec.require_paths = ['lib']
+
+  spec.add_runtime_dependency(%q<elasticsearch-api>, [">= 1.0.17", "< 2.0"])
+  spec.add_runtime_dependency(%q<elasticsearch-transport>, [">= 1.0.17", "< 2.0"])
 end
