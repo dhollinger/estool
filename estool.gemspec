@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.homepage      = %q{https://github.com/dhollinger/estool}
   spec.license       = 'Apache 2.0'
 
-  spec.files         = ['lib/estool.rb']
+  spec.files         = ['bin/estool', 'lib/estool.rb']
   spec.executables   = ['estool']
   spec.test_files    = ['tests/test_estool.rb']
   spec.require_paths = ['lib']
