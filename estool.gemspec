@@ -1,5 +1,5 @@
 #coding: utf-8
-$LOAD_PATH.unshift(File.expand_path('../lib', __FILE__))
+#$LOAD_PATH.unshift(File.expand_path('../lib', __FILE__))
 require 'lib/estool/version'
 
 Gem::Specification.new do |spec|
