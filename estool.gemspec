@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.email         = ['david.hollinger@moduletux.com']
   spec.summary       = %q{Command Line tool for interacting with Elasticsearch}
   spec.homepage      = %q{https://github.com/dhollinger/estool}
-  spec.license       = 'Apache 2.0'
+  spec.license       = 'Apache-2.0'
 
   spec.files         = ['bin/estool']
   spec.executables   = ['estool']
