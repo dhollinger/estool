@@ -2,8 +2,8 @@
 require 'elasticsearch'
 require 'net/http'
 require 'optparse'
-require 'lib/estool/cat'
-require 'lib/estool/connections'
+require 'estool/cat'
+require 'estool/connections'
 require 'thor'
 
 module Estool
