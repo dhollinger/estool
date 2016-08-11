@@ -24,7 +24,6 @@ module Estool
           master_timeout: @timeout,
           name: @name
       }
-      puts @data
       Estool::Actions::Cat.run(:aliases, @data, @server)
     end
   end
