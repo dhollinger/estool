@@ -11,25 +11,26 @@ module Estool::Actions
       @server = options.slice(:host, :port)
     end
 
-    def self.format_options(data)
+    def format_options(data)
       params = {}
       data.each do |k, v|
         case k
           when 'verbose'
-            params[:v] = v
+            params.merge!(v: v)
           when 'output'
-            params[:format] = v
+            params.merge!(format: v)
           when 'timeout'
-            params[:master_timeout] = v
+            params.merge!(master_timeout: v)
           when 'name'
-            params[:name] = v
+            params.merge!(name: v)
           else
             puts 'does not exist'
         end
       end
+      return params
     end
 
-    def self.cat(action, options, server)
+    def cat(action, options, server)
       client = Estool::Connections.start_conn(server[:host], server[:port])
       Estool::Connections.test_conn(client)
       begin
@@ -43,10 +44,9 @@ module Estool::Actions
       end
     end
 
-    def self.run
+    def run
       params = format_options(@data)
-      puts params
-      #cat(@cmd, params, @server)
+      cat(@cmd, params, @server)
     end
   end
 end
