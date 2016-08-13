@@ -17,6 +17,10 @@ module Estool
       @server = options.slice(:host, :port)
     end
 
+    def format_data
+
+    end
+
     def run
       data = {
           v: @verbose,

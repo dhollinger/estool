@@ -28,8 +28,8 @@ module Estool
                   :banner => 'Name of alias(es) to display information about',
                   :aliases => '-n'
     def aliases
-      require 'estool/cat/aliases'
-      Aliases.new(options).run
+      require 'estool/actions/cat'
+      Estool::Actions::Cat.new(:aliases, options).run
     end
 
     desc 'allocation [OPTIONS]', 'Display shard allocation information'
