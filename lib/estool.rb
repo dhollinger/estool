@@ -1,9 +1,5 @@
 #!/usr/bin/env ruby
-require 'elasticsearch'
-require 'net/http'
-require 'optparse'
 require 'estool/cat'
-require 'estool/connections'
 require 'thor'
 
 module Estool
