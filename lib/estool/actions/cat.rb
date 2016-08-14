@@ -23,6 +23,10 @@ module Estool::Actions
             params.merge!(master_timeout: v)
           when 'name'
             params.merge!(name: v)
+          when 'node'
+            params.merge!(node_id: v)
+          when 'primary'
+            params.merge!(pri: v)
           else
             puts 'does not exist'
         end

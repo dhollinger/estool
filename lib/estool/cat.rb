@@ -1,4 +1,5 @@
 require 'thor'
+require 'estool/actions/cat'
 
 module Estool
   class Cat < Thor
@@ -18,17 +19,16 @@ module Estool
                   :banner => 'Display output as json or text',
                   :default => 'text',
                   :aliases => '-o'
-    class_option 'timeout', :type => :numeric,
-                  :banner => 'Set Master Timeout in seconds',
-                  :default => 30,
-                  :aliases => '-t'
+    # class_option 'timeout', :type => :numeric,
+    #               :banner => 'Set Master Timeout in seconds',
+    #               :default => 30,
+    #               :aliases => '-t'
 
     desc 'aliases [OPTIONS]', 'Display information about aliases'
     method_option 'name', :type => :string,
                   :banner => 'Name of alias(es) to display information about',
                   :aliases => '-n'
     def aliases
-      require 'estool/actions/cat'
       Estool::Actions::Cat.new(:aliases, options).run
     end
 
@@ -42,8 +42,7 @@ module Estool
                  :enum => %w{b k m g},
                  :aliases => '-b'
     def allocation
-      require 'estool/cat/allocation'
-      Allocation.new(options).run
+      Estool::Actions::Cat.new(:allocation, options).run
     end
 
     desc 'count [OPTIONS]', 'Return Document count for cluster or indices'
@@ -51,8 +50,7 @@ module Estool
                   :banner => 'Index to count documents',
                   :aliases => '-i'
     def count
-      require 'estool/cat/count'
-      Count.new(options).run
+      Estool::Actions::Cat.new(:count, options).run
     end
 
     desc 'fielddata [OPTIONS]', 'Return field data usage data'
@@ -65,14 +63,12 @@ module Estool
                   :enum => %w{b k m g},
                   :aliases => '-b'
     def fielddata
-      require 'estool/cat/fielddata'
-      Fielddata.new(options).run
+      Estool::Actions::Cat.new(:fielddata, options).run
     end
 
     desc 'health [OPTIONS]', 'Display Elasticsearch Cluster health'
     def health
-      require 'estool/cat/health'
-      Health.new(options).run
+      Estool::Actions::Cat.new(:health, options).run
     end
 
     desc 'indices [OPTIONS]', 'Display indices statistics across the cluster'
@@ -89,38 +85,32 @@ module Estool
                   :enum => %w{b k m g},
                   :aliases => '-b'
     def indices
-      require 'estool/cat/indices'
-      Indices.new(options).run
+      Estool::Actions::Cat.new(:indices, options).run
     end
 
     desc 'master [OPTIONS]', 'Display current master node'
     def master
-      require 'estool/cat/master'
-      Master.new(options).run
+      Estool::Actions::Cat.new(:master, options).run
     end
 
     desc 'nodeattrs [OPTIONS]', 'Display custom node attributes'
     def nodeattrs
-      require 'estool/cat/nodeattrs'
-      Nodeattrs.new(options).run
+      Estool::Actions::Cat.new(:nodeattrs, options).run
     end
 
     desc 'nodes [OPTIONS]', 'Display Elasticsearch Nodes'
     def nodes
-      require 'estool/cat/nodes'
-      Nodes.new(options).run
+      Estool::Actions::Cat.new(:nodes, options).run
     end
 
     desc 'ptasks [OPTIONS]', 'Display Elasticsearch Pending Task in tabular format'
     def ptasks
-      require 'estool/cat/ptasks'
-      Ptasks.new(options).run
+      Estool::Actions::Cat.new(:pending_tasks, options).run
     end
 
     desc 'plugins [OPTIONS]', 'Display Elasticsearch Plugins'
     def plugins
-      require 'estool/cat/plugin'
-      Plugin.new(options).run
+      Estool::Actions::Cat.new(:plugins, options).run
     end
 
     desc 'recovery [OPTIONS]', 'Display shard recovery status'
@@ -133,14 +123,12 @@ module Estool
                   :enum => %w{b k m g},
                   :aliases => '-b'
     def recovery
-      require 'estool/cat/recovery'
-      Recovery.new(options).run
+      Estool::Actions::Cat.new(:recovery, options).run
     end
 
     desc 'repositories [OPTIONS]', 'Display registered repositories'
     def repositories
-      require 'estool/cat/repositories'
-      Repositories.new(options).run
+      Estool::Actions::Cat.new(:repositories, options).run
     end
   end
 end
