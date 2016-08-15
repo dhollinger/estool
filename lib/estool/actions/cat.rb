@@ -28,7 +28,7 @@ module Estool::Actions
           when 'primary'
             params.merge!(pri: v)
           else
-            puts 'does not exist'
+            params.merge!("#{k}": v)
         end
       end
       return params
