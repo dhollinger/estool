@@ -4,3 +4,4 @@
 .buildpath
 Gemfile.lock
 projectFilesBackup/
+.vscode/
