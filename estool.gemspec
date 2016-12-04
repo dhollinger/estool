@@ -16,6 +16,6 @@ Gem::Specification.new do |spec|
   spec.executables   = ['estool']
   spec.require_paths = ['lib']
 
-  spec.add_runtime_dependency(%q<elasticsearch-api>, [">= 1.0.17", "< 2.0"])
+  spec.add_runtime_dependency(%q<elasticsearch-api>, [">= 5.0.0", "< 6.0.0"])
   spec.add_runtime_dependency(%q<thor>)
 end
