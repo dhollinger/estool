@@ -12,7 +12,7 @@ module Estool::Actions
     end
 
     def format_options(data)
-      param = {}
+      params = {}
       data.each do |k, v|
         case k
           when 'update'

@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 require 'estool/cat'
+require 'estool/index'
 require 'thor'
 
 module Estool
