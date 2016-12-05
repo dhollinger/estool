@@ -15,6 +15,8 @@ module Estool::Actions
       params = {}
       data.each do |k, v|
         case k
+          when 'name'
+            params.merge!(index: v)
           when 'update'
             params.merge!(update_all_types: v)
           when 'wait'
@@ -23,13 +25,14 @@ module Estool::Actions
             params.merge!("#{k}": v)
         end
       end
+      return params
     end
 
     def index(action, options, server)
       client = Estool::Connections.start_conn(server[:host], server[:port])
       Estool::Connections.test_conn(client)
       begin
-        puts client.index.send(action, options)
+        puts client.indices.send(action, options)
       rescue ArgumentError => args
           puts "
                #{args}
