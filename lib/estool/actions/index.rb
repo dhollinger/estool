@@ -15,11 +15,11 @@ module Estool::Actions
       params = {}
       data.each do |k, v|
         case k
-          when 'name'
+        when :name
             params.merge!(index: v)
-          when 'update'
+          when :update
             params.merge!(update_all_types: v)
-          when 'wait'
+          when :wait
             params.merge!(wait_for_active_shards: v)
           else
             params.merge!("#{k}": v)

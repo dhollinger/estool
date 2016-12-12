@@ -1,5 +1,35 @@
 #!/usr/bin/env ruby
+require 'gli'
 require 'estool'
 
-# Placeholder
-Estool::Cli.start(ARGV)
+module Estool
+  module Cli
+    include GLI::App
+    extend self
+
+    program_desc 'Command line tool for interacting with Elasticsearch'
+
+    version Estool::VERSION
+
+    subcommand_option_handling :normal
+    arguments :strict
+
+    # global Options
+    desc 'Elasticsearch Host'
+    arg_name 'HOST'
+    default_value '127.0.0.1'
+    flag [:h, :host]
+
+    desc 'Elasticsearch REST Port'
+    arg_name 'PORT'
+    default_value '9200'
+    flag [:p, :port]
+
+    desc 'Show verbose output'
+    switch [:v, :verbose], negatable: false
+
+    require 'estool/cli'
+
+    exit run(ARGV)
+  end
+end

@@ -13,19 +13,18 @@ module Estool::Actions
 
     def format_options(data)
       params = {}
+      puts @data
       data.each do |k, v|
         case k
-          when 'verbose'
+        when :verbose
             params.merge!(v: v)
-          when 'output'
+          when :output
             params.merge!(format: v)
-          when 'timeout'
-            params.merge!(master_timeout: v)
-          when 'name'
+          when :name
             params.merge!(name: v)
-          when 'node'
+          when :node
             params.merge!(node_id: v)
-          when 'primary'
+          when :primary
             params.merge!(pri: v)
           else
             params.merge!("#{k}": v)
@@ -42,7 +41,7 @@ module Estool::Actions
       rescue ArgumentError => args
         puts "
              #{args}
-        Usage: 'estool cat help #{action}' for more information
+        Usage: 'estool help #{action}' for more information
         "
         exit 1
       end
