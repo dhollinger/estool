@@ -7,7 +7,13 @@ Gem::Specification.new do |spec|
   spec.platform      = Gem::Platform::RUBY
   spec.authors       = ['David Hollinger III']
   spec.email         = ['david.hollinger@moduletux.com']
-  spec.summary       = %q{Command Line tool for interacting with Elasticsearch. Still in Development, expect bugs and fast releases until 1.0.0}
+  spec.summary       = %q{Command Line tool for interacting with Elasticsearch.
+                          Still in Development, expect bugs and fast releases
+                          until 1.0.0.
+                          NOTE: version 0.2.0 involves a complete CLI rewrite.
+                          Some options have not been reimplemented, others have changed,
+                          and a new command implemented
+                        }
   spec.homepage      = %q{https://github.com/dhollinger/estool}
   spec.license       = 'Apache-2.0'
 
