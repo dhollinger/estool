@@ -37,7 +37,7 @@ module Estool
       c.command :delete do |delete|
         delete.flag 'name', :required => true,
                             :arg_name => 'index_name',
-                            :desc => 'Name of the index to create'
+                            :desc => 'Name of the index to delete'
 
 
         delete.action do |global_options,options,args|
@@ -61,6 +61,28 @@ module Estool
           }
           show = Estool::Actions::Cat.new('indices', options)
           show.run
+        end
+      end
+
+      c.desc 'Close index'
+      c.command :close do |close|
+        close.switch 'ignore_unavailable', :default_value => false,
+                                           :desc => 'Ignore indices if unavailable.',
+                                           :negatable => false
+
+        close.flag 'name', :required => true,
+                           :arg_name => 'index_name',
+                           :desc => 'name of index to close'
+
+        close.action do |global_options,options,args|
+          options = {
+            host: global_options[:host],
+            port: global_options[:port],
+            ignore_unavailable: options[:ignore_unavailable],
+            name: options[:name]
+          }
+          close = Estool::Actions::Index.new('close', options)
+          close.run
         end
       end
 
