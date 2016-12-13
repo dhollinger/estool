@@ -13,7 +13,6 @@ module Estool::Actions
 
     def format_options(data)
       params = {}
-      puts @data
       data.each do |k, v|
         case k
         when :verbose
