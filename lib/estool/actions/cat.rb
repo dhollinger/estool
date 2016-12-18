@@ -16,17 +16,17 @@ module Estool::Actions
       data.each do |k, v|
         case k
         when :verbose
-            params.merge!(v: v)
-          when :output
-            params.merge!(format: v)
-          when :name
-            params.merge!(name: v)
-          when :node
-            params.merge!(node_id: v)
-          when :primary
-            params.merge!(pri: v)
-          else
-            params.merge!("#{k}": v)
+          params.merge!(v: v)
+        when :output
+          params.merge!(format: v)
+        when :name
+          params.merge!(name: v)
+        when :node
+          params.merge!(node_id: v)
+        when :primary
+          params.merge!(pri: v)
+        else
+          params.merge!("#{k}": v)
         end
       end
       return params
