@@ -1,2 +1,5 @@
 Metrics/BlockLength:
   Enabled: false
+
+Style/ModuleFunction:
+  Enabled: false
