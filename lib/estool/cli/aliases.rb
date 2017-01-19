@@ -6,13 +6,10 @@ module Estool
     command :aliases do |c|
 
       c.desc 'Get a list of aliases'
-      c.long_desc %{
-        Get a list of all aliases or a list of aliases for a specific index.
-      }
       c.command [:list, :ls] do |ls|
 
-        ls.flag 'name', :arg_name => 'alias name(s)',
-                        :desc => 'Comma separated list of aliases to get information about'
+        ls.flag [:name, :n], :arg_name => 'alias name(s)',
+                             :desc => 'Comma separated list of aliases to get information about'
 
         ls.flag [:index, :i], :arg_name => 'index name(s)',
                               :desc => 'Comma separated list of index names'
@@ -72,6 +69,8 @@ module Estool
           dl_alias.run
         end
       end
+
+      c.default_command :list
     end
   end
 end
