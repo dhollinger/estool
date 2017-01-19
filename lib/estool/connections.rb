@@ -9,7 +9,6 @@ module Estool
     end
 
     def self.test_conn(client)
-      begin
         client.perform_request 'GET', '_cluster/health'
       rescue Faraday::ConnectionFailed => connfail
         # Connection Failure Message
