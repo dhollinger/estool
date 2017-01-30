@@ -24,7 +24,7 @@ module Estool
           options = {
             host: global_options[:host],
             port: global_options[:port],
-            name: options[:name],
+            index: options[:name],
             update: options[:update],
             wait: options[:wait]
           }

@@ -8,9 +8,6 @@ module Estool
       c.desc 'Get a list of aliases'
       c.command [:list, :ls] do |ls|
 
-        ls.flag [:name, :n], :arg_name => 'alias name(s)',
-                             :desc => 'Comma separated list of aliases to get information about'
-
         ls.flag [:index, :i], :arg_name => 'index name(s)',
                               :desc => 'Comma separated list of index names'
 
