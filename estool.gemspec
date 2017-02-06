@@ -15,11 +15,11 @@ Gem::Specification.new do |spec|
   spec.license       = 'Apache-2.0'
 
   # spec.files         = ['lib/estool.rb']
-  spec.files         = Dir["{lib}/**/*.rb", "bin/*", "LICENSE", "*.md"]
+  spec.files         = Dir['{lib}/**/*.rb', 'bin/*', 'LICENSE', '*.md']
   spec.executables   = ['estool']
   spec.require_paths = ['lib']
 
-  spec.add_runtime_dependency(%q<elasticsearch>, [">= 5.0.0", "< 6.0.0"])
-  spec.add_runtime_dependency(%q<elasticsearch-api>, [">= 5.0.0", "< 6.0.0"])
-  spec.add_runtime_dependency(%q<gli>, [">= 2.14.0", "< 3.0.0"])
+  spec.add_runtime_dependency('elasticsearch', ['>= 5.0.0', '< 6.0.0'])
+  spec.add_runtime_dependency('elasticsearch-api', ['>= 5.0.0', '< 6.0.0'])
+  spec.add_runtime_dependency('gli', ['>= 2.14.0', '< 3.0.0'])
 end
