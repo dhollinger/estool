@@ -29,7 +29,7 @@ module Estool::Actions
           params.merge!("#{k}": v)
         end
       end
-      return params
+      params
     end
 
     def cat(action, options, server)

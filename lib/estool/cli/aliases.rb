@@ -8,8 +8,8 @@ module Estool
       c.desc 'Get a list of aliases'
       c.command [:list, :ls] do |ls|
 
-        ls.flag [:index, :i], :arg_name => 'index name(s)',
-                              :desc => 'Comma separated list of index names'
+        ls.flag [:index, :i], arg_name: 'index name(s)',
+                              desc: 'Comma separated list of index names'
 
         ls.action do |global_options,options,args|
           options = {
@@ -25,13 +25,13 @@ module Estool
 
       c.desc 'create an alias for an index.'
       c.command [:create, :c] do |create|
-        create.flag [:name, :n], :arg_name => 'alias name',
-                                 :required => true,
-                                 :desc     => 'What to name the alias.'
+        create.flag [:name, :n], arg_name: 'alias name',
+                                 required: true,
+                                 desc: 'What to name the alias.'
 
-        create.flag [:index, :i], :arg_name => 'index name',
-                                  :required => true,
-                                  :desc     => 'Index to apply alias to.'
+        create.flag [:index, :i], arg_name: 'index name',
+                                  required: true,
+                                  desc: 'Index to apply alias to.'
 
         create.action do |global_options,options,args|
           options = {

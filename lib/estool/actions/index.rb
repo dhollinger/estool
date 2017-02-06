@@ -23,7 +23,7 @@ module Estool::Actions
           params.merge!("#{k}": v)
         end
       end
-      return params
+      params
     end
 
     def index(action, options, server)
@@ -32,11 +32,11 @@ module Estool::Actions
       begin
         puts client.indices.send(action, options)
       rescue ArgumentError => args
-          puts "
-               #{args}
-          Usage: 'estool index help #{action}' for more information
-          "
-          exit 1
+        puts "
+             #{args}
+        Usage: 'estool index help #{action}' for more information
+        "
+        exit 1
       end
     end
 
