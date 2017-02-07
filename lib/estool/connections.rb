@@ -3,8 +3,7 @@ require 'net/http'
 
 module Estool
   module Connections
-
-    def self.start_conn(host,port)
+    def self.start_conn(host, port)
       Elasticsearch::Client.new host: "#{host}:#{port}"
     end
 

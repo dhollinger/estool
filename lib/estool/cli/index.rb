@@ -6,21 +6,20 @@ module Estool
     desc 'Interact with Cluster Indices'
     arg_name 'subcommand'
     command :index do |c|
-
       c.desc 'Create a new index'
       c.command :create do |create|
-        create.flag 'name', :required => true,
-                            :arg_name => 'index_name',
-                            :desc => 'Name of the index to create'
+        create.flag 'name', required: true,
+                            arg_name: 'index_name',
+                            desc: 'Name of the index to create'
 
-        create.flag 'update', :default_value => false,
-                              :desc => 'Update the mapping for all fields with
+        create.flag 'update', default_value: false,
+                              desc: 'Update the mapping for all fields with
                                         same name across all types.'
 
-        create.flag 'wait', :default_value => 0,
-                            :desc => 'Wait until specified number of shards is active'
+        create.flag 'wait', default_value: 0,
+                            desc: 'Wait until specified number of shards is active'
 
-        create.action do |global_options,options,args|
+        create.action do |global_options, options, _args|
           options = {
             host: global_options[:host],
             port: global_options[:port],
@@ -35,12 +34,11 @@ module Estool
 
       c.desc 'Delete Index or Indices'
       c.command :delete do |delete|
-        delete.flag 'name', :required => true,
-                            :arg_name => 'index_name',
-                            :desc => 'Name of the index to delete'
+        delete.flag 'name', required: true,
+                            arg_name: 'index_name',
+                            desc: 'Name of the index to delete'
 
-
-        delete.action do |global_options,options,args|
+        delete.action do |global_options, options, _args|
           options = {
             host: global_options[:host],
             port: global_options[:port],
@@ -53,7 +51,7 @@ module Estool
 
       c.desc 'List indices'
       c.command :show do |show|
-        show.action do |global_options,options,args|
+        show.action do |global_options, _options, _args|
           options = {
             host: global_options[:host],
             port: global_options[:port],
@@ -66,15 +64,15 @@ module Estool
 
       c.desc 'Close index'
       c.command :close do |close|
-        close.switch 'ignore_unavailable', :default_value => false,
-                                           :desc => 'Ignore indices if unavailable.',
-                                           :negatable => false
+        close.switch 'ignore_unavailable', default_value: false,
+                                           desc: 'Ignore indices if unavailable.',
+                                           negatable: false
 
-        close.flag 'name', :required => true,
-                           :arg_name => 'index_name',
-                           :desc => 'name of index to close'
+        close.flag 'name', required: true,
+                           arg_name: 'index_name',
+                           desc: 'name of index to close'
 
-        close.action do |global_options,options,args|
+        close.action do |global_options, options, _args|
           options = {
             host: global_options[:host],
             port: global_options[:port],

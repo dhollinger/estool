@@ -4,12 +4,11 @@ module Estool
   module Cli
     desc 'Get Cluster Health'
     command :health do |c|
+      c.flag 'output', default_value: 'text',
+                       arg_name: 'output_type',
+                       desc: 'Output Health status as text or json'
 
-      c.flag 'output', :default_value => 'text',
-                       :arg_name => 'output_type',
-                       :desc => 'Output Health status as text or json'
-
-      c.action do |global_options,options,args|
+      c.action do |global_options, options, _args|
         options = {
           host: global_options[:host],
           port: global_options[:port],

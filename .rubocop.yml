@@ -3,3 +3,6 @@ Metrics/BlockLength:
 
 Style/ModuleFunction:
   Enabled: false
+
+Metrics/LineLength:
+  Enabled: false
